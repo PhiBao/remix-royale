@@ -130,22 +130,22 @@ This is intended to be directly useful in a launch flow, not just interesting to
 
 ```mermaid
 flowchart LR
-	A[Seed prompt] --> B[/api/generate]
-	B --> C{DGrid available?}
-	C -- Yes --> D[DGrid generation model]
-	C -- No --> E[Deterministic demo generator]
-	D --> F[Three narrative branches]
-	E --> F
-	F --> G[User selects branch]
-	G --> H[User adds remix instruction]
-	H --> I[/api/judge]
-	I --> J{DGrid available?}
-	J -- Yes --> K[Two DGrid jury models]
-	J -- No --> L[Deterministic demo jury]
-	K --> M[Weighted verdict]
-	L --> M
-	M --> N[Launch pack]
-	N --> O[Open Four.meme create form]
+    A["Seed prompt"] --> B["/api/generate"];
+    B --> C{"DGrid available?"};
+    C -->|Yes| D["DGrid generation model"];
+    C -->|No| E["Deterministic demo generator"];
+    D --> F["Three narrative branches"];
+    E --> F;
+    F --> G["User selects branch"];
+    G --> H["User adds remix instruction"];
+    H --> I["/api/judge"];
+    I --> J{"DGrid available?"};
+    J -->|Yes| K["Two DGrid jury models"];
+    J -->|No| L["Deterministic demo jury"];
+    K --> M["Weighted verdict"];
+    L --> M;
+    M --> N["Launch pack"];
+    N --> O["Open Four.meme create form"];
 ```
 
 ### Tech stack
@@ -243,67 +243,6 @@ npm run build
 - `src/lib/scoring.ts` aggregates scores into a final verdict
 - `src/lib/types.ts` defines shared product types
 
-## Demo strategy
-
-### Core line
-
-Use this in the first 15 seconds:
-
-> Most products help people trade memes. Remix Royale helps memes prove they deserve to exist.
-
-### Three-minute script
-
-#### 0:00 - 0:20 | Hook
-
-"Four.meme is where memes launch, but before a meme deserves liquidity, it needs a story people actually want to repeat. Remix Royale is the layer that pressure-tests that story before launch."
-
-#### 0:20 - 0:45 | Explain the product
-
-"I start with one seed prompt, the app creates three different narrative directions, I pick the strongest one, add a remix instruction, and a two-model jury turns that into a launch-ready brief."
-
-#### 0:45 - 1:10 | Show the opening state
-
-"The app opens in a clean pre-generation state. Nothing runs until I ask for it, which makes the experience feel intentional and keeps the product fast and legible on first load."
-
-#### 1:10 - 1:35 | Generate live branches
-
-"Now I click Forge 3 branches. The system generates three materially different narrative contenders from the same seed. We are looking for different behaviors, not different wording."
-
-#### 1:35 - 2:00 | Select a branch
-
-"Here I pick the branch that feels most repeatable. The right branch is not just funny. It should create a social ritual people can recognize and copy."
-
-#### 2:00 - 2:20 | Remix it
-
-"Now I add one remix instruction to shape the final direction, whether I want more ritual, more screenshot culture, or more clarity in the first post."
-
-#### 2:20 - 2:45 | Run the jury
-
-"The jury scores originality, coherence, community fit, and launch readiness. This is where exploration becomes a real launch decision."
-
-#### 2:45 - 3:00 | End with the handoff
-
-"The output is a launch pack plus a concrete launch sequence, a field map for the Four.meme create form, and a direct handoff into that flow. So instead of leaving with vague inspiration, the creator leaves with something they can actually launch."
-
-### Short live walkthrough for judges
-
-Use this if someone asks for the flow in one sentence:
-
-"Prompt in, three contenders out, one branch selected, one remix instruction applied, jury verdict returned, launch pack handed to Four.meme." 
-
-### What to emphasize in Q&A
-
-- This is not a meme generator. It is a launch-readiness engine.
-- The moat is structured competition between narratives, not one-shot text generation.
-- The output is operational: pitch, ritual, missions, launch moment, community prompt, and a create-form handoff.
-- The product starts quiet on purpose and only spends model calls on explicit demand.
-
-### Fallback lines
-
-- If generation feels slow: "The important part is that the system produces different launch behaviors, not three paraphrases."
-- If judging feels slow: "The jury is where creative exploration becomes operational."
-- If asked why AI is necessary: "AI here is not replacing taste. It is structuring competition between ideas and compressing that into a launch decision."
-
 ## Vision
 
 Remix Royale should not stop at single-session prompt-to-pack generation.
@@ -322,7 +261,6 @@ In that version, the product does three things:
 
 - Save battle history and past verdicts
 - Share a public launch pack URL
-- Add a presentation mode for demo day and pitch decks
 - Add richer Four.meme handoff data once integration surfaces are clearer
 
 ### Mid term
@@ -336,14 +274,6 @@ In that version, the product does three things:
 - Connect launch packs to post-launch feedback loops
 - Learn from downstream performance signals on Four.meme and social channels
 - Build a persistent library of meme archetypes and narrative playbooks
-
-## Why this is not short-term
-
-The short-term use case is hackathon demo polish. The longer-term use case is creator infrastructure.
-
-If meme launches continue to proliferate, the bottleneck is not token creation. The bottleneck is differentiation, clarity, and community behavior design. Remix Royale addresses that bottleneck directly.
-
-That gives it room to evolve from a hackathon demo into a real creative tooling layer around meme creation and launch readiness.
 
 ## Current limitations
 
